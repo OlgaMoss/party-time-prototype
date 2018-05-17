@@ -4,15 +4,47 @@
       <i class='plus icon'></i>
     </button>
     <div class='ui centered card' v-show="isCreating">
-      <div class='content'>
+      <div class='content left aligned'>
         <div class='ui form'>
           <div class='field'>
-            <label>Title</label>
-            <input v-model="titleText" type='text'>
+            <label>Название</label>
+            <input v-model="nameText" type='text'>
           </div>
           <div class='field'>
-            <label>Project</label>
-            <input v-model="projectText" type='text'>
+            <label>Описание</label>
+            <input v-model="descriptionText" type='text'>
+          </div>
+          <div class="field">
+            <div class="ui checkbox">
+              <input type="checkbox"  v-model="isFreeEntryCheckbox">
+              <label>Свободный вход</label>
+            </div>
+          </div>
+          <div class="two fields">
+            <div class='field'>
+              <label>Дата</label>
+              <datepicker v-model="dateField" format="yyyy-MM-d"></datepicker>
+            </div>
+            <div class='field'>
+              <label>Время</label>
+              <input type="time" class="form-control" placeholder="Date" v-model="timeField">
+            </div>
+          </div>
+          <div class='field'>
+            <label>Цена</label>
+            <input type='number' v-model="priceField" >
+          </div>
+          <div class='field'>
+            <label>Адрес</label>
+            <input type='text' v-model="addressField" >
+          </div>
+           <div class="field">
+          <label>Категория</label>
+            <select class="ui fluid dropdown"  v-model="categoryField">
+              <option value="">Категория:</option>
+              <option v-for="category in categories" category.sync="category"
+              :key="category.id"> {{category.name}} </option>
+            </select>
           </div>
           <div class='ui two button attached buttons'>
             <button class='ui basic blue button' v-on:click="sendForm()">
@@ -29,11 +61,30 @@
 </template>
 
 <script>
+import Datepicker from 'vuejs-datepicker';
+import moment from 'moment';
+
 export default {
+  components: {
+    Datepicker,
+  },
   data() {
     return {
-      titleText: '',
-      projectText: '',
+      categories: [{
+        name: 'Концерт',
+      }, {
+        name: 'Квартирник',
+      }, {
+        name: 'Клубная вечеринка',
+      }],
+      nameText: '',
+      descriptionText: '',
+      isFreeEntryCheckbox: false,
+      dateField: '',
+      timeField: '',
+      priceField: 0,
+      addressField: '',
+      categoryField: '',
       isCreating: false,
     };
   },
@@ -45,16 +96,33 @@ export default {
       this.isCreating = false;
     },
     sendForm() {
-      if (this.titleText.length > 0 && this.projectText.length > 0) {
-        const title = this.titleText;
-        const project = this.projectText;
+      if (this.nameText.length > 0 && this.descriptionText.length > 0) {
+        const name = this.nameText;
+        const description = this.descriptionText;
+        const isFreeEntry = this.isFreeEntryCheckbox;
+        const date = moment(this.dateField).format('YYYY-MM-DD');
+        const time = this.timeField;
+        const price = this.priceField;
+        const address = this.addressField;
+        const category = this.categoryField;
         this.$emit('create-party', {
-          title,
-          project,
-          done: false,
+          name,
+          description,
+          isFreeEntry,
+          date,
+          time,
+          price,
+          address,
+          category,
         });
-        this.titleText = '';
-        this.projectText = '';
+        this.nameText = '';
+        this.descriptionText = '';
+        this.isFreeEntryCheckbox = false;
+        this.dateField = '';
+        this.timeField = '';
+        this.priceField = 0;
+        this.addressField = '';
+        this.categoryField = '';
         this.isCreating = false;
       }
     },
