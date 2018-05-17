@@ -5,6 +5,7 @@
     <div class='ui three column centered grid'>
       <div class='column'>
         <parties-list v-bind:parties="parties"></parties-list>
+          <create-party v-on:create-party="createParty"></create-party>
       </div>
     </div>
   </div>
@@ -13,11 +14,13 @@
 <script>
 import swal from 'sweetalert';
 import PartiesList from './components/PartiesList';
+import CreateParty from './components/CreateParty';
 
 export default {
   name: 'app',
   components: {
     PartiesList,
+    CreateParty,
   },
   data() {
     return {
@@ -43,7 +46,7 @@ export default {
   methods: {
     createParty(newParty) {
       this.parties.push(newParty);
-      swal('Success!', 'To-Do created!', 'success');
+      swal('Success!', 'Party created!', 'success');
     },
   },
 };
