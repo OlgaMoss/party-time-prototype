@@ -6,7 +6,7 @@
       <a class="item active" v-on:click="showForm">Вечеринки</a>
       <a class="item" v-on:click="hideForm">Категории</a>
     </div>
-    <div class='ui three column centered grid'>
+    <div class='ui one column centered grid'>
       <div class='column'>
         <parties-list v-bind:parties="parties" v-show="isSelectedParties"></parties-list>
         <create-party v-on:create-party="createParty" v-show="isSelectedParties"></create-party>
@@ -95,3 +95,23 @@ export default {
   },
 };
 </script>
+
+<style>
+ @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    /* .column{
+        /* widows:; */
+  /* } */
+ }
+/* landscape */ 
+ @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+ }
+ /* portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+}
+/* landscape */
+@media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (orientation: landscape) {
+}
+/* portrait */
+@media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (orientation: portrait) {
+}
+</style>

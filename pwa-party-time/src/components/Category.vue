@@ -112,3 +112,26 @@ export default {
   },
 };
 </script>
+
+<style>
+ @media screen and (min-device-width: 1200px) and (max-device-width: 1600px) and (-webkit-min-device-pixel-ratio: 1) {
+    .content{
+      max-width: 736px;
+   } 
+ }
+/* landscape */ 
+ @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+ }
+ /* portrait */
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+}
+/* landscape */
+@media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (orientation: landscape) {
+ .content, .column{
+    max-width: 736px;
+   } 
+}
+/* portrait */
+@media only screen and (min-device-width: 320px) and (max-device-width: 736px) and (orientation: portrait) {
+}
+</style>
