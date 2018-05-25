@@ -19,7 +19,6 @@
 <script>
 import swal from 'sweetalert';
 import $ from 'jquery';
-import axios from 'axios';
 import PartiesList from './components/PartiesList';
 import CreateParty from './components/CreateParty';
 import Category from './components/Category';
@@ -42,45 +41,43 @@ export default {
       }, {
         name: 'Клубная вечеринка',
       }],
-      parties: [
-      //   {
-      //   name: 'Вечеринка A',
-      //   description: 'Описание A',
-      //   isFreeEntry: false,
-      //   date: '2015-10-02',
-      //   time: '13:30',
-      //   price: 500,
-      //   address: 'Адрес А',
-      //   category: 'Квартирник',
-      // }, {
-      //   name: 'Вечеринка B',
-      //   description: 'Описание B',
-      //   isFreeEntry: true,
-      //   date: '2015-10-02',
-      //   time: '13:30',
-      //   price: 500,
-      //   address: 'Адрес B',
-      //   category: 'Квартирник',
-      // }, {
-      //   name: 'Вечеринка C',
-      //   description: 'Описание C',
-      //   isFreeEntry: false,
-      //   date: '2015-10-02',
-      //   time: '13:30',
-      //   price: 500,
-      //   address: 'Адрес C',
-      //   category: 'Квартирник',
-      // }, {
-      //   name: 'Вечеринка D',
-      //   description: 'Описание D',
-      //   isFreeEntry: false,
-      //   date: '2015-10-02',
-      //   time: '13:30',
-      //   price: 500,
-      //   address: 'Адрес D',
-      //   category: 'Квартирник',
-      // }
-      ],
+      parties: [{
+        name: 'Вечеринка A',
+        description: 'Описание A',
+        isFreeEntry: false,
+        date: '2015-10-02',
+        time: '13:30',
+        price: 500,
+        address: 'Адрес А',
+        category: 'Квартирник',
+      }, {
+        name: 'Вечеринка B',
+        description: 'Описание B',
+        isFreeEntry: true,
+        date: '2015-10-02',
+        time: '13:30',
+        price: 500,
+        address: 'Адрес B',
+        category: 'Квартирник',
+      }, {
+        name: 'Вечеринка C',
+        description: 'Описание C',
+        isFreeEntry: false,
+        date: '2015-10-02',
+        time: '13:30',
+        price: 500,
+        address: 'Адрес C',
+        category: 'Квартирник',
+      }, {
+        name: 'Вечеринка D',
+        description: 'Описание D',
+        isFreeEntry: false,
+        date: '2015-10-02',
+        time: '13:30',
+        price: 500,
+        address: 'Адрес D',
+        category: 'Квартирник',
+      }],
     };
   },
   methods: {
@@ -96,7 +93,7 @@ export default {
     },
   },
   mounted() {
-    $.getJSON('../data/data.json', (parties) => {
+    $.getJSON('data/data.json', (parties) => {
       this.parties = parties;
     });
   },
@@ -112,7 +109,7 @@ export default {
         /* widows:; */
   /* } */
  }
-/* landscape */ 
+/* landscape */
  @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
  }
  /* portrait */
