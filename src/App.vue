@@ -18,10 +18,10 @@
 
 <script>
 import swal from 'sweetalert';
-import $ from 'jquery';
 import PartiesList from './components/PartiesList';
 import CreateParty from './components/CreateParty';
 import Category from './components/Category';
+import { locales } from '../config/i18n';
 
 
 export default {
@@ -91,11 +91,6 @@ export default {
     hideForm() {
       this.isSelectedParties = false;
     },
-  },
-  mounted() {
-    $.getJSON('data/data.json', (parties) => {
-      this.parties = parties;
-    });
   },
   created() {
     this.$emit('get-categories', this.categories);
