@@ -18,11 +18,10 @@
 
 <script>
 import swal from 'sweetalert';
+import $ from 'jquery';
 import PartiesList from './components/PartiesList';
 import CreateParty from './components/CreateParty';
 import Category from './components/Category';
-import { locales } from '../config/i18n';
-
 
 export default {
   name: 'app',
@@ -41,43 +40,7 @@ export default {
       }, {
         name: 'Клубная вечеринка',
       }],
-      parties: [{
-        name: 'Вечеринка A',
-        description: 'Описание A',
-        isFreeEntry: false,
-        date: '2015-10-02',
-        time: '13:30',
-        price: 500,
-        address: 'Адрес А',
-        category: 'Квартирник',
-      }, {
-        name: 'Вечеринка B',
-        description: 'Описание B',
-        isFreeEntry: true,
-        date: '2015-10-02',
-        time: '13:30',
-        price: 500,
-        address: 'Адрес B',
-        category: 'Квартирник',
-      }, {
-        name: 'Вечеринка C',
-        description: 'Описание C',
-        isFreeEntry: false,
-        date: '2015-10-02',
-        time: '13:30',
-        price: 500,
-        address: 'Адрес C',
-        category: 'Квартирник',
-      }, {
-        name: 'Вечеринка D',
-        description: 'Описание D',
-        isFreeEntry: false,
-        date: '2015-10-02',
-        time: '13:30',
-        price: 500,
-        address: 'Адрес D',
-        category: 'Квартирник',
-      }],
+      parties: null,
     };
   },
   methods: {
@@ -91,6 +54,11 @@ export default {
     hideForm() {
       this.isSelectedParties = false;
     },
+  },
+  mounted() {
+    $.getJSON('/static/data/data.json', (data) => {
+      this.parties = data;
+    });
   },
   created() {
     this.$emit('get-categories', this.categories);
